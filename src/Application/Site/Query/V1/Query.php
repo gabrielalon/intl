@@ -1,11 +1,10 @@
 <?php
 
-namespace N3ttech\Intl\Application\Site\Query;
+namespace N3ttech\Intl\Application\Site\Query\V1;
 
 use N3ttech\Intl\Application\Site\Query\ReadModel\Site;
-use N3ttech\Messaging\Query\Query\Query;
 
-class SiteQuery extends Query
+abstract class Query extends \N3ttech\Messaging\Query\Query\Query
 {
     /** @var Site */
     private $site;
@@ -20,10 +19,8 @@ class SiteQuery extends Query
 
     /**
      * @param Site $site
-     *
-     * @return SiteQuery
      */
-    public function setSite(Site $site): SiteQuery
+    public function setSite(Site $site)
     {
         $this->site = $site;
     }

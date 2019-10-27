@@ -2,7 +2,7 @@
 
 namespace N3ttech\Intl\Application\Site\Query\V1;
 
-class FindOneByIdentity extends \N3ttech\Intl\Application\Site\Query\SiteQuery
+class FindOneByIdentity extends Query
 {
     /** @var string */
     private $uuid;

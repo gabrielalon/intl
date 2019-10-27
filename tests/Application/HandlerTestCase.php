@@ -42,6 +42,9 @@ abstract class HandlerTestCase extends PHPUnitTestCase
         return new Command\CommandBus($commandTransporterFactory->createDefault());
     }
 
+    /**
+     * @return Query\QueryBus
+     */
     protected function getQueryBus(): Query\QueryBus
     {
         $queryHandlerProvider = new Query\QueryHandling\QueryHandlerProvider\Containerized();

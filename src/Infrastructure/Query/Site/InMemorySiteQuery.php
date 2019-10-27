@@ -28,6 +28,31 @@ class InMemorySiteQuery implements Query\V1\SiteQuery
     }
 
     /**
+     * @param Query\V1\FindOneByHost $query
+     *
+     * @throws \Assert\AssertionFailedException
+     */
+    public function findOneByHost(Query\V1\FindOneByHost $query): void
+    {
+        $filter = new Filter\HostIterator($this->entities);
+        $filter->setHost($query->getHost());
+        $filter->rewind();
+
+        while ($filter->valid()) {
+            /** @var Query\ReadModel\Site $site */
+            $site = $filter->current();
+            $query->setSite($site);
+
+            return;
+        }
+
+        throw new \RuntimeException(\sprintf(
+            'Site does not exists on given host: %s',
+            $query->getHost()
+        ));
+    }
+
+    /**
      * @param string $uuid
      *
      * @throws \RuntimeException
