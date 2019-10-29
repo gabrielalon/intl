@@ -13,7 +13,7 @@ interface SiteProjection extends EventProjector
     public function onNewSiteCreated(Event\NewSiteCreated $event): void;
 
     /**
-     * @param Event\NewSiteCreated $event
+     * @param Event\ExistingSiteFlagged $event
      */
     public function onExistingSiteFlagged(Event\ExistingSiteFlagged $event): void;
 

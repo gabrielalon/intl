@@ -101,7 +101,7 @@ class Continent implements Viewable
      *
      * @throws \Assert\AssertionFailedException
      *
-     * @return \N3ttech\Intl\Application\Continent\Query\ReadModel\Continent
+     * @return Continent
      */
     public function addName(string $locale, string $name): Continent
     {

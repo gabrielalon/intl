@@ -101,7 +101,7 @@ class Language implements Viewable
      *
      * @throws \Assert\AssertionFailedException
      *
-     * @return \N3ttech\Intl\Application\Language\Query\ReadModel\Language
+     * @return Language
      */
     public function addName(string $locale, string $name): Language
     {
