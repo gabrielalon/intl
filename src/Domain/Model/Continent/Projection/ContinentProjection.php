@@ -13,9 +13,9 @@ interface ContinentProjection extends EventProjector
     public function onNewContinentCreated(Event\NewContinentCreated $event): void;
 
     /**
-     * @param Event\ExistingContinentUpdated $event
+     * @param Event\ExistingContinentTranslated $event
      */
-    public function onExistingContinentUpdated(Event\ExistingContinentUpdated $event): void;
+    public function onExistingContinentTranslated(Event\ExistingContinentTranslated $event): void;
 
     /**
      * @param Event\ExistingContinentRemoved $event

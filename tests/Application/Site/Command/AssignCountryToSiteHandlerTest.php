@@ -18,7 +18,7 @@ use Ramsey\Uuid\Uuid;
  * @internal
  * @coversNothing
  */
-class CategorizeSiteHandlerTest extends HandlerTestCase
+class AssignCountryToSiteHandlerTest extends HandlerTestCase
 {
     public function setUp(): void
     {
@@ -26,7 +26,7 @@ class CategorizeSiteHandlerTest extends HandlerTestCase
 
         $this->register(Projection\SiteProjection::class, new InMemorySiteProjector());
         $this->register(Command\CreateSiteHandler::class, new Command\CreateSiteHandler($repository));
-        $this->register(Command\CategorizeSiteHandler::class, new Command\CategorizeSiteHandler($repository));
+        $this->register(Command\AssignCountryToSiteHandler::class, new Command\AssignCountryToSiteHandler($repository));
     }
 
     /**
@@ -35,13 +35,13 @@ class CategorizeSiteHandlerTest extends HandlerTestCase
      * @throws \Assert\AssertionFailedException
      * @throws \Exception
      */
-    public function itCategorizesExistingSiteTest()
+    public function itAssignesCategoriesToSiteTest()
     {
         //given
         $command = new Command\CreateSite(Uuid::uuid4()->toString(), 'test.host');
         $this->getCommandBus()->dispatch($command);
 
-        $command = new Command\CategorizeSite($command->getUuid(), [Uuid::uuid4()->toString()]);
+        $command = new Command\AssignCountryToSite($command->getUuid(), ['PL', 'GB']);
 
         //when
         $this->getCommandBus()->dispatch($command);
@@ -52,7 +52,7 @@ class CategorizeSiteHandlerTest extends HandlerTestCase
         $entity = $projector->get($command->getUuid());
 
         $this->assertEquals($entity->identifier(), $command->getUuid());
-        $this->assertEquals($entity->categories(), $command->getCategories());
+        $this->assertEquals($entity->countries(), $command->getCountries());
 
         $aggregateId = VO\Identity\Uuid::fromIdentity($command->getUuid());
         $collection = $this->getStreamRepository()->load($aggregateId, 2);
@@ -61,11 +61,11 @@ class CategorizeSiteHandlerTest extends HandlerTestCase
             $event = $eventStream->getEventName();
             /** @var AggregateChanged $event */
 
-            /** @var Event\ExistingSiteCategorized $event */
+            /** @var Event\CountriesToSiteAssigned $event */
             $event = $event::fromEventStream($eventStream);
 
             $this->assertTrue($entity->getUuid()->equals($event->siteUuid()));
-            $this->assertTrue($entity->getCategories()->equals($event->siteCategories()));
+            $this->assertTrue($entity->getCountries()->equals($event->siteCountries()));
         }
 
         $snapshot = $this->getSnapshotRepository()->get(AggregateType::fromAggregateRootClass(Site::class), $aggregateId);

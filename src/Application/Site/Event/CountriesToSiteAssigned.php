@@ -6,16 +6,16 @@ use N3ttech\Intl\Domain\Model\Site\Site;
 use N3ttech\Messaging\Aggregate\AggregateRoot;
 use N3ttech\Valuing as VO;
 
-class ExistingSiteCategorized extends SiteEvent
+class CountriesToSiteAssigned extends SiteEvent
 {
     /**
      * @throws \Assert\AssertionFailedException
      *
-     * @return VO\Identity\Uuids
+     * @return VO\Intl\Country\Codes
      */
-    public function siteCategories(): VO\Identity\Uuids
+    public function siteCountries(): VO\Intl\Country\Codes
     {
-        return VO\Identity\Uuids::fromArray($this->payload['categories'] ?? []);
+        return VO\Intl\Country\Codes::fromArray($this->payload['countries'] ?? []);
     }
 
     /**
@@ -26,6 +26,6 @@ class ExistingSiteCategorized extends SiteEvent
     public function populate(AggregateRoot $site): void
     {
         $site->setUuid($this->siteUuid());
-        $site->setCategories($this->siteCategories());
+        $site->setCountries($this->siteCountries());
     }
 }

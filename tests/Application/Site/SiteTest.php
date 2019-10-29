@@ -75,28 +75,25 @@ class SiteTest extends AggregateChangedTestCase
      * @throws \Assert\AssertionFailedException
      * @throws \Exception
      */
-    public function itCategorizesExistingSiteTest()
+    public function itAssignesCountriesToSiteTest()
     {
         /** @var Site $site */
         $site = $this->reconstituteReturnPackageFromHistory($this->newSiteCreated());
 
-        $categories = VO\Identity\Uuids::fromArray([
-            VO\Identity\Uuid::fromIdentity(Uuid::uuid4()->toString()),
-            VO\Identity\Uuid::fromIdentity(Uuid::uuid4()->toString()),
-        ]);
+        $categories = VO\Intl\Country\Codes::fromArray(['PL', 'GB']);
 
-        $site->categorized($categories);
+        $site->countriesAssigned($categories);
 
         /** @var AggregateChanged[] $events */
         $events = $this->popRecordedEvents($site);
 
         $this->assertCount(1, $events);
 
-        /** @var Event\ExistingSiteCategorized $event */
+        /** @var Event\CountriesToSiteAssigned $event */
         $event = $events[0];
 
-        $this->assertSame(Event\ExistingSiteCategorized::class, $event->messageName());
-        $this->assertTrue($categories->equals($event->siteCategories()));
+        $this->assertSame(Event\CountriesToSiteAssigned::class, $event->messageName());
+        $this->assertTrue($categories->equals($event->siteCountries()));
     }
 
     /**

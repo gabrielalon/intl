@@ -13,8 +13,8 @@ class Site implements Viewable
     /** @var VO\Char\Text */
     private $host;
 
-    /** @var VO\Identity\Uuids */
-    private $categories;
+    /** @var VO\Intl\Country\Codes */
+    private $countries;
 
     /** @var VO\Option\Check */
     private $mobile;
@@ -95,27 +95,27 @@ class Site implements Viewable
     /**
      * @return array
      */
-    public function categories(): array
+    public function countries(): array
     {
-        return $this->categories->toArray();
+        return $this->countries->raw();
     }
 
     /**
-     * @return VO\Identity\Uuids
+     * @return VO\Intl\Country\Codes
      */
-    public function getCategories(): VO\Identity\Uuids
+    public function getCountries(): VO\Intl\Country\Codes
     {
-        return $this->categories;
+        return $this->countries;
     }
 
     /**
-     * @param VO\Identity\Uuids $categories
+     * @param VO\Intl\Country\Codes $countries
      *
      * @return Site
      */
-    public function setCategories(VO\Identity\Uuids $categories): Site
+    public function setCountries(VO\Intl\Country\Codes $countries): Site
     {
-        $this->categories = $categories;
+        $this->countries = $countries;
 
         return $this;
     }

@@ -63,12 +63,12 @@ class InMemorySiteProjector implements SiteProjection
      * @throws \Assert\AssertionFailedException
      * @throws \RuntimeException
      */
-    public function onExistingSiteCategorized(Event\ExistingSiteCategorized $event): void
+    public function onCountriesToSiteAssigned(Event\CountriesToSiteAssigned $event): void
     {
         $this->checkExistence($event->aggregateId());
 
         $site = $this->entities->get($event->aggregateId())
-            ->setCategories($event->siteCategories())
+            ->setCountries($event->siteCountries())
         ;
 
         $this->entities->add($site);

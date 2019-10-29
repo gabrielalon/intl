@@ -2,16 +2,15 @@
 
 namespace N3ttech\Intl\Application\Continent\Query\ReadModel;
 
-use N3ttech\Intl\Domain\Model\Continent\Continent\Code;
 use N3ttech\Messaging\Query\Query\Viewable;
 use N3ttech\Valuing as VO;
 
 class Continent implements Viewable
 {
-    /** @var Code */
+    /** @var VO\Intl\Continent\Code */
     private $code;
 
-    /** @var VO\Intl\Locales */
+    /** @var VO\Intl\Language\Locales */
     private $names;
 
     /**
@@ -25,7 +24,7 @@ class Continent implements Viewable
     {
         $site = new static();
 
-        return $site->setCode(Code::fromString($code));
+        return $site->setCode(VO\Intl\Continent\Code::fromCode($code));
     }
 
     /**
@@ -37,19 +36,19 @@ class Continent implements Viewable
     }
 
     /**
-     * @return Code
+     * @return VO\Intl\Continent\Code
      */
-    public function getCode(): Code
+    public function getCode(): VO\Intl\Continent\Code
     {
         return $this->code;
     }
 
     /**
-     * @param Code $code
+     * @param VO\Intl\Continent\Code $code
      *
      * @return Continent
      */
-    public function setCode(Code $code): Continent
+    public function setCode(VO\Intl\Continent\Code $code): Continent
     {
         $this->code = $code;
 
@@ -57,9 +56,9 @@ class Continent implements Viewable
     }
 
     /**
-     * @return VO\Intl\Locales
+     * @return VO\Intl\Language\Locales
      */
-    public function getNames(): VO\Intl\Locales
+    public function getNames(): VO\Intl\Language\Locales
     {
         return $this->names;
     }
@@ -85,11 +84,11 @@ class Continent implements Viewable
     }
 
     /**
-     * @param VO\Intl\Locales $names
+     * @param VO\Intl\Language\Locales $names
      *
      * @return Continent
      */
-    public function setNames(VO\Intl\Locales $names): Continent
+    public function setNames(VO\Intl\Language\Locales $names): Continent
     {
         $this->names = $names;
 
@@ -107,7 +106,7 @@ class Continent implements Viewable
     public function addName(string $locale, string $name): Continent
     {
         if (null === $this->names) {
-            $this->setNames(VO\Intl\Locales::fromArray([]));
+            $this->setNames(VO\Intl\Language\Locales::fromArray([]));
         }
 
         $this->names->addLocale($locale, $name);

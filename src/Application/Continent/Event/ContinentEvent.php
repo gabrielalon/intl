@@ -2,18 +2,18 @@
 
 namespace N3ttech\Intl\Application\Continent\Event;
 
-use N3ttech\Intl\Domain\Model\Continent\Continent;
 use N3ttech\Messaging\Aggregate\EventBridge\AggregateChanged;
+use N3ttech\Valuing as VO;
 
 abstract class ContinentEvent extends AggregateChanged
 {
     /**
      * @throws \Assert\AssertionFailedException
      *
-     * @return Continent\Code
+     * @return VO\Intl\Continent\Code
      */
-    public function continentCode(): Continent\Code
+    public function continentCode(): VO\Intl\Continent\Code
     {
-        return Continent\Code::fromString($this->aggregateId());
+        return VO\Intl\Continent\Code::fromCode($this->aggregateId());
     }
 }

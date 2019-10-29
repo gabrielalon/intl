@@ -43,7 +43,7 @@ class InMemoryContinentProjector implements Projection\ContinentProjection
      * @throws \Assert\AssertionFailedException
      * @throws \RuntimeException
      */
-    public function onExistingContinentUpdated(Event\ExistingContinentUpdated $event): void
+    public function onExistingContinentTranslated(Event\ExistingContinentTranslated $event): void
     {
         $this->checkExistence($event->aggregateId());
 

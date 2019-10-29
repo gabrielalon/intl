@@ -11,8 +11,8 @@ class Site extends AggregateRoot
     /** @var VO\Char\Text */
     private $host;
 
-    /** @var VO\Identity\Uuids */
-    private $categories;
+    /** @var VO\Intl\Country\Codes */
+    private $countries;
 
     /** @var VO\Option\Check */
     private $mobile;
@@ -33,13 +33,13 @@ class Site extends AggregateRoot
     }
 
     /**
-     * @param VO\Identity\Uuids $categories
+     * @param VO\Intl\Country\Codes $countries
      *
      * @return Site
      */
-    public function setCategories(VO\Identity\Uuids $categories): Site
+    public function setCountries(VO\Intl\Country\Codes $countries): Site
     {
-        $this->categories = $categories;
+        $this->countries = $countries;
 
         return $this;
     }
@@ -118,12 +118,12 @@ class Site extends AggregateRoot
     }
 
     /**
-     * @param VO\Identity\Uuids $categories
+     * @param VO\Intl\Country\Codes $codes
      */
-    public function categorized(VO\Identity\Uuids $categories): void
+    public function countriesAssigned(VO\Intl\Country\Codes $codes): void
     {
-        $this->recordThat(Event\ExistingSiteCategorized::occur($this->aggregateId(), [
-            'categories' => $categories->toArray(),
+        $this->recordThat(Event\CountriesToSiteAssigned::occur($this->aggregateId(), [
+            'countries' => $codes->raw(),
         ]));
     }
 

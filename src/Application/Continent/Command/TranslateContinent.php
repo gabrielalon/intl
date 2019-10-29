@@ -4,7 +4,7 @@ namespace N3ttech\Intl\Application\Continent\Command;
 
 use N3ttech\Messaging\Command\Command\Command;
 
-class UpdateContinent extends Command
+class TranslateContinent extends Command
 {
     /** @var string */
     private $code;

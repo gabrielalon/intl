@@ -5,6 +5,7 @@ namespace N3ttech\Intl\Infrastructure\Persist\Continent;
 use N3ttech\Intl\Domain\Model\Continent\Continent;
 use N3ttech\Messaging\Aggregate\AggregateRoot;
 use N3ttech\Messaging\Aggregate\Persist\AggregateRepository;
+use N3ttech\Valuing as VO;
 
 class ContinentRepository extends AggregateRepository
 {
@@ -35,6 +36,6 @@ class ContinentRepository extends AggregateRepository
      */
     public function find(string $code): AggregateRoot
     {
-        return $this->findAggregateRoot(Continent\Code::fromString($code));
+        return $this->findAggregateRoot(VO\Intl\Continent\Code::fromCode($code));
     }
 }

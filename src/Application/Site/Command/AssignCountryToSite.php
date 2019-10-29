@@ -4,22 +4,22 @@ namespace N3ttech\Intl\Application\Site\Command;
 
 use N3ttech\Messaging\Command\Command\Command;
 
-class CategorizeSite extends Command
+class AssignCountryToSite extends Command
 {
     /** @var string */
     private $uuid;
 
     /** @var string[] */
-    private $categories;
+    private $countries;
 
     /**
      * @param string   $uuid
-     * @param string[] $categories
+     * @param string[] $countries
      */
-    public function __construct(string $uuid, array $categories = [])
+    public function __construct(string $uuid, array $countries = [])
     {
         $this->uuid = $uuid;
-        $this->categories = $categories;
+        $this->countries = $countries;
     }
 
     /**
@@ -33,8 +33,8 @@ class CategorizeSite extends Command
     /**
      * @return string[]
      */
-    public function getCategories(): array
+    public function getCountries(): array
     {
-        return $this->categories;
+        return $this->countries;
     }
 }

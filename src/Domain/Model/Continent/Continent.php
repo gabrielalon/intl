@@ -8,15 +8,15 @@ use N3ttech\Valuing as VO;
 
 class Continent extends Aggregate\AggregateRoot
 {
-    /** @var VO\Intl\Locales */
+    /** @var VO\Intl\Language\Locales */
     private $names;
 
     /**
-     * @param Continent\Code $code
+     * @param VO\Intl\Continent\Code $code
      *
      * @return Continent
      */
-    public function setCode(Continent\Code $code): Continent
+    public function setCode(VO\Intl\Continent\Code $code): Continent
     {
         $this->setAggregateId($code);
 
@@ -24,11 +24,11 @@ class Continent extends Aggregate\AggregateRoot
     }
 
     /**
-     * @param VO\Intl\Locales $names
+     * @param VO\Intl\Language\Locales $names
      *
      * @return Continent
      */
-    public function setNames(VO\Intl\Locales $names): Continent
+    public function setNames(VO\Intl\Language\Locales $names): Continent
     {
         $this->names = $names;
 
@@ -36,12 +36,12 @@ class Continent extends Aggregate\AggregateRoot
     }
 
     /**
-     * @param Continent\Code  $code
-     * @param VO\Intl\Locales $names
+     * @param VO\Intl\Continent\Code   $code
+     * @param VO\Intl\Language\Locales $names
      *
      * @return Continent
      */
-    public static function createNewContinent(Continent\Code $code, VO\Intl\Locales $names): Continent
+    public static function createNewContinent(VO\Intl\Continent\Code $code, VO\Intl\Language\Locales $names): Continent
     {
         $continent = new static();
 
@@ -53,11 +53,11 @@ class Continent extends Aggregate\AggregateRoot
     }
 
     /**
-     * @param VO\Intl\Locales $names
+     * @param VO\Intl\Language\Locales $names
      */
-    public function update(VO\Intl\Locales $names): void
+    public function translate(VO\Intl\Language\Locales $names): void
     {
-        $this->recordThat(Event\ExistingContinentUpdated::occur($this->aggregateId(), [
+        $this->recordThat(Event\ExistingContinentTranslated::occur($this->aggregateId(), [
             'names' => $names->raw(),
         ]));
     }

@@ -11,6 +11,7 @@ use N3ttech\Intl\Infrastructure\Projection\Continent\InMemoryContinentProjector;
 use N3ttech\Intl\Test\Application\HandlerTestCase;
 use N3ttech\Messaging\Aggregate\AggregateType;
 use N3ttech\Messaging\Aggregate\EventBridge\AggregateChanged;
+use N3ttech\Valuing as VO;
 
 /**
  * @internal
@@ -50,7 +51,7 @@ class RemoveContinentHandlerTest extends HandlerTestCase
         $this->expectException(\RuntimeException::class);
         $projector->get($command->getCode());
 
-        $aggregateId = Continent\Code::fromString($command->getCode());
+        $aggregateId = VO\Intl\Continent\Code::fromCode($command->getCode());
         $collection = $this->getStreamRepository()->load($aggregateId, 2);
 
         foreach ($collection->getArrayCopy() as $eventStream) {

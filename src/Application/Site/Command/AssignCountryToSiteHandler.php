@@ -6,10 +6,10 @@ use N3ttech\Intl\Domain\Model\Site\Site;
 use N3ttech\Messaging\Message\Domain\Message;
 use N3ttech\Valuing as VO;
 
-class CategorizeSiteHandler extends SiteHandler
+class AssignCountryToSiteHandler extends SiteHandler
 {
     /**
-     * @param CategorizeSite $command
+     * @param AssignCountryToSite $command
      *
      * @throws \Assert\AssertionFailedException
      * @throws \Exception
@@ -19,7 +19,7 @@ class CategorizeSiteHandler extends SiteHandler
         /** @var Site $site */
         $site = $this->repository->find($command->getUuid());
 
-        $site->categorized(VO\Identity\Uuids::fromArray($command->getCategories()));
+        $site->countriesAssigned(VO\Intl\Country\Codes::fromArray($command->getCountries()));
 
         $this->repository->save($site);
     }

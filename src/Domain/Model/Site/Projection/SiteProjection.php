@@ -18,9 +18,9 @@ interface SiteProjection extends EventProjector
     public function onExistingSiteFlagged(Event\ExistingSiteFlagged $event): void;
 
     /**
-     * @param Event\ExistingSiteCategorized $event
+     * @param Event\CountriesToSiteAssigned $event
      */
-    public function onExistingSiteCategorized(Event\ExistingSiteCategorized $event): void;
+    public function onCountriesToSiteAssigned(Event\CountriesToSiteAssigned $event): void;
 
     /**
      * @param Event\ExistingSiteRemoved $event

@@ -11,11 +11,11 @@ class NewContinentCreated extends ContinentEvent
     /**
      * @throws \Assert\AssertionFailedException
      *
-     * @return VO\Intl\Locales
+     * @return VO\Intl\Language\Locales
      */
-    public function continentNames(): VO\Intl\Locales
+    public function continentNames(): VO\Intl\Language\Locales
     {
-        return VO\Intl\Locales::fromArray($this->payload['names'] ?? []);
+        return VO\Intl\Language\Locales::fromArray($this->payload['names'] ?? []);
     }
 
     /**

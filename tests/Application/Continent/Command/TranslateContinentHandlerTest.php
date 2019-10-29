@@ -11,12 +11,13 @@ use N3ttech\Intl\Infrastructure\Projection\Continent\InMemoryContinentProjector;
 use N3ttech\Intl\Test\Application\HandlerTestCase;
 use N3ttech\Messaging\Aggregate\AggregateType;
 use N3ttech\Messaging\Aggregate\EventBridge\AggregateChanged;
+use N3ttech\Valuing as VO;
 
 /**
  * @internal
  * @coversNothing
  */
-class UpdateContinentHandlerTest extends HandlerTestCase
+class TranslateContinentHandlerTest extends HandlerTestCase
 {
     public function setUp(): void
     {
@@ -24,7 +25,7 @@ class UpdateContinentHandlerTest extends HandlerTestCase
 
         $this->register(Projection\ContinentProjection::class, new InMemoryContinentProjector());
         $this->register(Command\CreateContinentHandler::class, new Command\CreateContinentHandler($repository));
-        $this->register(Command\UpdateContinentHandler::class, new Command\UpdateContinentHandler($repository));
+        $this->register(Command\TranslateContinentHandler::class, new Command\TranslateContinentHandler($repository));
     }
 
     /**
@@ -39,7 +40,7 @@ class UpdateContinentHandlerTest extends HandlerTestCase
         $command = new Command\CreateContinent('eu', ['pl' => 'Europa', 'en' => 'Europe']);
         $this->getCommandBus()->dispatch($command);
 
-        $command = new Command\UpdateContinent($command->getCode(), ['pl' => 'Test', 'en' => 'Test']);
+        $command = new Command\TranslateContinent($command->getCode(), ['pl' => 'Test', 'en' => 'Test']);
 
         //when
         $this->getCommandBus()->dispatch($command);
@@ -52,14 +53,14 @@ class UpdateContinentHandlerTest extends HandlerTestCase
         $this->assertEquals($entity->identifier(), $command->getCode());
         $this->assertEquals($entity->names(), $command->getNames());
 
-        $aggregateId = Continent\Code::fromString($command->getCode());
+        $aggregateId = VO\Intl\Continent\Code::fromCode($command->getCode());
         $collection = $this->getStreamRepository()->load($aggregateId, 2);
 
         foreach ($collection->getArrayCopy() as $eventStream) {
             $event = $eventStream->getEventName();
             /** @var AggregateChanged $event */
 
-            /** @var Event\ExistingContinentUpdated $event */
+            /** @var Event\ExistingContinentTranslated $event */
             $event = $event::fromEventStream($eventStream);
 
             $this->assertTrue($entity->getCode()->equals($event->continentCode()));

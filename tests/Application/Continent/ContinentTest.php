@@ -15,10 +15,10 @@ use N3ttech\Valuing as VO;
  */
 class ContinentTest extends AggregateChangedTestCase
 {
-    /** @var Continent\Code */
+    /** @var VO\Intl\Continent\Code */
     private $code;
 
-    /** @var VO\Intl\Locales */
+    /** @var VO\Intl\Language\Locales */
     private $names;
 
     /**
@@ -27,8 +27,8 @@ class ContinentTest extends AggregateChangedTestCase
      */
     protected function setUp(): void
     {
-        $this->code = Continent\Code::fromString('eu');
-        $this->names = VO\Intl\Locales::fromArray(['pl' => 'Europa', 'en' => 'Europe']);
+        $this->code = VO\Intl\Continent\Code::fromCode('eu');
+        $this->names = VO\Intl\Language\Locales::fromArray(['pl' => 'Europa', 'en' => 'Europe']);
     }
 
     /**
@@ -63,19 +63,19 @@ class ContinentTest extends AggregateChangedTestCase
         /** @var Continent $continent */
         $continent = $this->reconstituteReturnPackageFromHistory($this->newContinentCreated());
 
-        $names = VO\Intl\Locales::fromArray(['pl' => 'Test', 'en' => 'Test']);
+        $names = VO\Intl\Language\Locales::fromArray(['pl' => 'Test', 'en' => 'Test']);
 
-        $continent->update($names);
+        $continent->translate($names);
 
         /** @var AggregateChanged[] $events */
         $events = $this->popRecordedEvents($continent);
 
         $this->assertCount(1, $events);
 
-        /** @var Event\ExistingContinentUpdated $event */
+        /** @var Event\ExistingContinentTranslated $event */
         $event = $events[0];
 
-        $this->assertSame(Event\ExistingContinentUpdated::class, $event->messageName());
+        $this->assertSame(Event\ExistingContinentTranslated::class, $event->messageName());
         $this->assertTrue($names->equals($event->continentNames()));
     }
 
