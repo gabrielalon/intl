@@ -15,7 +15,6 @@
     },
     "require": {
         "php": ">=7.3",
-        "myclabs/php-enum": "^1.7",
         "n3ttech/messaging": "^1.1.1"
     },
     "require-dev": {
