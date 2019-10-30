@@ -13,7 +13,7 @@ class Currency implements Viewable
     /** @var VO\Char\Text */
     private $symbol;
 
-    /** @var VO\Intl\Language\Locales */
+    /** @var VO\Intl\Language\Texts */
     private $names;
 
     /** @var VO\Number\Decimal */
@@ -135,19 +135,19 @@ class Currency implements Viewable
     }
 
     /**
-     * @return VO\Intl\Language\Locales
+     * @return VO\Intl\Language\Texts
      */
-    public function getNames(): VO\Intl\Language\Locales
+    public function getNames(): VO\Intl\Language\Texts
     {
         return $this->names;
     }
 
     /**
-     * @param VO\Intl\Language\Locales $names
+     * @param VO\Intl\Language\Texts $names
      *
      * @return Currency
      */
-    public function setNames(VO\Intl\Language\Locales $names): Currency
+    public function setNames(VO\Intl\Language\Texts $names): Currency
     {
         $this->names = $names;
 
@@ -165,7 +165,7 @@ class Currency implements Viewable
     public function addName(string $locale, string $name): Currency
     {
         if (null === $this->names) {
-            $this->setNames(VO\Intl\Language\Locales::fromArray([]));
+            $this->setNames(VO\Intl\Language\Texts::fromArray([]));
         }
 
         $this->names->addLocale($locale, $name);

@@ -18,7 +18,7 @@ class CreateContinentHandler extends ContinentHandler
     {
         $this->repository->save(Continent::createNewContinent(
             VO\Intl\Continent\Code::fromCode($command->getCode()),
-            VO\Intl\Language\Locales::fromArray($command->getNames())
+            VO\Intl\Language\Texts::fromArray($command->getNames())
         ));
     }
 }

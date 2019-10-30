@@ -10,10 +10,10 @@ abstract class LanguageEvent extends AggregateChanged
     /**
      * @throws \Assert\AssertionFailedException
      *
-     * @return VO\Intl\Language\Locale
+     * @return VO\Intl\Language\Code
      */
-    public function languageLocale(): VO\Intl\Language\Locale
+    public function languageLocale(): VO\Intl\Language\Code
     {
-        return VO\Intl\Language\Locale::fromLocale($this->aggregateId());
+        return VO\Intl\Language\Code::fromCode($this->aggregateId());
     }
 }

@@ -22,7 +22,7 @@ class VatRateTest extends AggregateChangedTestCase
     /** @var VO\Number\Decimal */
     private $rate;
 
-    /** @var VO\Intl\Language\Locales */
+    /** @var VO\Intl\Language\Texts */
     private $names;
 
     /**
@@ -33,7 +33,7 @@ class VatRateTest extends AggregateChangedTestCase
     {
         $this->uuid = VO\Identity\Uuid::fromIdentity(Uuid::uuid4()->toString());
         $this->rate = VO\Number\Decimal::fromFloat(0.23);
-        $this->names = VO\Intl\Language\Locales::fromArray(['pl' => '23']);
+        $this->names = VO\Intl\Language\Texts::fromArray(['pl' => '23']);
     }
 
     /**
@@ -74,7 +74,7 @@ class VatRateTest extends AggregateChangedTestCase
         /** @var VatRate $vatRate */
         $vatRate = $this->reconstituteReturnPackageFromHistory($this->newVatRateCreated());
 
-        $names = VO\Intl\Language\Locales::fromArray(['pl' => '5']);
+        $names = VO\Intl\Language\Texts::fromArray(['pl' => '5']);
 
         $vatRate->translate($names);
 

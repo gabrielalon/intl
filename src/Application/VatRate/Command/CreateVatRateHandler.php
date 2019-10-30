@@ -19,7 +19,7 @@ class CreateVatRateHandler extends VatRateHandler
         $this->repository->save(VatRate::createNewVatRate(
             VO\Identity\Uuid::fromIdentity($command->getUuid()),
             VO\Number\Decimal::fromFloat($command->getRate()),
-            VO\Intl\Language\Locales::fromArray($command->getNames())
+            VO\Intl\Language\Texts::fromArray($command->getNames())
         ));
     }
 }

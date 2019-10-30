@@ -10,7 +10,7 @@ class Continent implements Viewable
     /** @var VO\Intl\Continent\Code */
     private $code;
 
-    /** @var VO\Intl\Language\Locales */
+    /** @var VO\Intl\Language\Texts */
     private $names;
 
     /**
@@ -56,9 +56,9 @@ class Continent implements Viewable
     }
 
     /**
-     * @return VO\Intl\Language\Locales
+     * @return VO\Intl\Language\Texts
      */
-    public function getNames(): VO\Intl\Language\Locales
+    public function getNames(): VO\Intl\Language\Texts
     {
         return $this->names;
     }
@@ -84,11 +84,11 @@ class Continent implements Viewable
     }
 
     /**
-     * @param VO\Intl\Language\Locales $names
+     * @param VO\Intl\Language\Texts $names
      *
      * @return Continent
      */
-    public function setNames(VO\Intl\Language\Locales $names): Continent
+    public function setNames(VO\Intl\Language\Texts $names): Continent
     {
         $this->names = $names;
 
@@ -106,7 +106,7 @@ class Continent implements Viewable
     public function addName(string $locale, string $name): Continent
     {
         if (null === $this->names) {
-            $this->setNames(VO\Intl\Language\Locales::fromArray([]));
+            $this->setNames(VO\Intl\Language\Texts::fromArray([]));
         }
 
         $this->names->addLocale($locale, $name);

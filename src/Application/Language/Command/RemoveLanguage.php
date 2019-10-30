@@ -7,21 +7,21 @@ use N3ttech\Messaging\Command\Command\Command;
 class RemoveLanguage extends Command
 {
     /** @var string */
-    private $locale;
+    private $code;
 
     /**
-     * @param string $locale
+     * @param string $code
      */
-    public function __construct(string $locale)
+    public function __construct(string $code)
     {
-        $this->locale = $locale;
+        $this->code = $code;
     }
 
     /**
      * @return string
      */
-    public function getLocale(): string
+    public function getCode(): string
     {
-        return $this->locale;
+        return $this->code;
     }
 }

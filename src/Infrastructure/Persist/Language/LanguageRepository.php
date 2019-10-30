@@ -28,14 +28,13 @@ class LanguageRepository extends AggregateRepository
     }
 
     /**
-     * @param string $locale
-     *
-     * @throws \Assert\AssertionFailedException
+     * @param string $code
      *
      * @return AggregateRoot|Language
+     * @throws \Assert\AssertionFailedException
      */
-    public function find(string $locale): AggregateRoot
+    public function find(string $code): AggregateRoot
     {
-        return $this->findAggregateRoot(VO\Intl\Language\Locale::fromLocale($locale));
+        return $this->findAggregateRoot(VO\Intl\Language\Code::fromCode($code));
     }
 }

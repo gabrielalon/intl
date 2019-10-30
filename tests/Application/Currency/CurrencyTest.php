@@ -118,7 +118,7 @@ class CurrencyTest extends AggregateChangedTestCase
         /** @var Currency $currency */
         $currency = $this->reconstituteReturnPackageFromHistory($this->newCurrencyCreated());
 
-        $names = VO\Intl\Language\Locales::fromArray(['pl' => 'Złoty']);
+        $names = VO\Intl\Language\Texts::fromArray(['pl' => 'Złoty']);
 
         $currency->translate($names);
 

@@ -11,7 +11,7 @@ class VatRate extends AggregateRoot
     /** @var VO\Number\Decimal */
     private $rate;
 
-    /** @var VO\Intl\Language\Locales */
+    /** @var VO\Intl\Language\Texts */
     private $names;
 
     /**
@@ -39,11 +39,11 @@ class VatRate extends AggregateRoot
     }
 
     /**
-     * @param VO\Intl\Language\Locales $names
+     * @param VO\Intl\Language\Texts $names
      *
      * @return VatRate
      */
-    public function setNames(VO\Intl\Language\Locales $names): VatRate
+    public function setNames(VO\Intl\Language\Texts $names): VatRate
     {
         $this->names = $names;
 
@@ -53,14 +53,14 @@ class VatRate extends AggregateRoot
     /**
      * @param VO\Identity\Uuid         $uuid
      * @param VO\Number\Decimal        $rate
-     * @param VO\Intl\Language\Locales $names
+     * @param VO\Intl\Language\Texts $names
      *
      * @return VatRate
      */
     public static function createNewVatRate(
         VO\Identity\Uuid $uuid,
         VO\Number\Decimal $rate,
-        VO\Intl\Language\Locales $names
+        VO\Intl\Language\Texts $names
     ): VatRate {
         $site = new VatRate();
 
@@ -73,9 +73,9 @@ class VatRate extends AggregateRoot
     }
 
     /**
-     * @param VO\Intl\Language\Locales $names
+     * @param VO\Intl\Language\Texts $names
      */
-    public function translate(VO\Intl\Language\Locales $names): void
+    public function translate(VO\Intl\Language\Texts $names): void
     {
         $this->recordThat(Event\ExistingVatRateTranslated::occur($this->aggregateId(), [
             'names' => $names->raw(),

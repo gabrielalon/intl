@@ -8,15 +8,15 @@ use N3ttech\Valuing as VO;
 
 class Language extends Aggregate\AggregateRoot
 {
-    /** @var VO\Intl\Language\Locales */
+    /** @var VO\Intl\Language\Texts */
     private $names;
 
     /**
-     * @param VO\Intl\Language\Locale $locale
+     * @param VO\Intl\Language\Code $locale
      *
      * @return Language
      */
-    public function setLocale(VO\Intl\Language\Locale $locale): Language
+    public function setLocale(VO\Intl\Language\Code $locale): Language
     {
         $this->setAggregateId($locale);
 
@@ -24,11 +24,11 @@ class Language extends Aggregate\AggregateRoot
     }
 
     /**
-     * @param VO\Intl\Language\Locales $names
+     * @param VO\Intl\Language\Texts $names
      *
      * @return Language
      */
-    public function setNames(VO\Intl\Language\Locales $names): Language
+    public function setNames(VO\Intl\Language\Texts $names): Language
     {
         $this->names = $names;
 
@@ -36,12 +36,12 @@ class Language extends Aggregate\AggregateRoot
     }
 
     /**
-     * @param VO\Intl\Language\Locale  $locale
-     * @param VO\Intl\Language\Locales $names
+     * @param VO\Intl\Language\Code  $locale
+     * @param VO\Intl\Language\Texts $names
      *
      * @return Language
      */
-    public static function createNewLanguage(VO\Intl\Language\Locale $locale, VO\Intl\Language\Locales $names): Language
+    public static function createNewLanguage(VO\Intl\Language\Code $locale, VO\Intl\Language\Texts $names): Language
     {
         $continent = new static();
 
@@ -53,9 +53,9 @@ class Language extends Aggregate\AggregateRoot
     }
 
     /**
-     * @param VO\Intl\Language\Locales $names
+     * @param VO\Intl\Language\Texts $names
      */
-    public function translate(VO\Intl\Language\Locales $names): void
+    public function translate(VO\Intl\Language\Texts $names): void
     {
         $this->recordThat(Event\ExistingLanguageTranslated::occur($this->aggregateId(), [
             'names' => $names->raw(),

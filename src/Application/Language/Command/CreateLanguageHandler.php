@@ -17,8 +17,8 @@ class CreateLanguageHandler extends LanguageHandler
     public function run(Message $command): void
     {
         $this->repository->save(Language::createNewLanguage(
-            VO\Intl\Language\Locale::fromLocale($command->getLocale()),
-            VO\Intl\Language\Locales::fromArray($command->getNames())
+            VO\Intl\Language\Code::fromCode($command->getCode()),
+            VO\Intl\Language\Texts::fromArray($command->getNames())
         ));
     }
 }

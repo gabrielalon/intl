@@ -11,7 +11,7 @@ class Currency extends AggregateRoot
     /** @var VO\Char\Text */
     private $symbol;
 
-    /** @var VO\Intl\Language\Locales */
+    /** @var VO\Intl\Language\Texts */
     private $names;
 
     /** @var VO\Number\Decimal */
@@ -51,11 +51,11 @@ class Currency extends AggregateRoot
     }
 
     /**
-     * @param VO\Intl\Language\Locales $names
+     * @param VO\Intl\Language\Texts $names
      *
      * @return Currency
      */
-    public function setNames(VO\Intl\Language\Locales $names): Currency
+    public function setNames(VO\Intl\Language\Texts $names): Currency
     {
         $this->names = $names;
 
@@ -159,9 +159,9 @@ class Currency extends AggregateRoot
     }
 
     /**
-     * @param VO\Intl\Language\Locales $names
+     * @param VO\Intl\Language\Texts $names
      */
-    public function translate(VO\Intl\Language\Locales $names): void
+    public function translate(VO\Intl\Language\Texts $names): void
     {
         $this->recordThat(Event\ExistingCurrencyTranslated::occur($this->aggregateId(), [
             'names' => $names->raw(),

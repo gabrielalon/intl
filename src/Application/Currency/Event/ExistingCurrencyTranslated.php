@@ -11,11 +11,11 @@ class ExistingCurrencyTranslated extends CurrencyEvent
     /**
      * @throws \Assert\AssertionFailedException
      *
-     * @return VO\Intl\Language\Locales
+     * @return VO\Intl\Language\Texts
      */
-    public function currencyNames(): VO\Intl\Language\Locales
+    public function currencyNames(): VO\Intl\Language\Texts
     {
-        return VO\Intl\Language\Locales::fromArray($this->payload['names'] ?? []);
+        return VO\Intl\Language\Texts::fromArray($this->payload['names'] ?? []);
     }
 
     /**

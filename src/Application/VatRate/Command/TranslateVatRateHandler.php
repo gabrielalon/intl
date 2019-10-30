@@ -19,7 +19,7 @@ class TranslateVatRateHandler extends VatRateHandler
         /** @var VatRate $vatRate */
         $vatRate = $this->repository->find($command->getUuid());
 
-        $vatRate->translate(VO\Intl\Language\Locales::fromArray($command->getNames()));
+        $vatRate->translate(VO\Intl\Language\Texts::fromArray($command->getNames()));
 
         $this->repository->save($vatRate);
     }

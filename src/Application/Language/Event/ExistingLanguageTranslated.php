@@ -11,11 +11,11 @@ class ExistingLanguageTranslated extends LanguageEvent
     /**
      * @throws \Assert\AssertionFailedException
      *
-     * @return VO\Intl\Language\Locales
+     * @return VO\Intl\Language\Texts
      */
-    public function languageNames(): VO\Intl\Language\Locales
+    public function languageNames(): VO\Intl\Language\Texts
     {
-        return VO\Intl\Language\Locales::fromArray($this->payload['names'] ?? []);
+        return VO\Intl\Language\Texts::fromArray($this->payload['names'] ?? []);
     }
 
     /**

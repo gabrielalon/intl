@@ -44,12 +44,12 @@ class CreateLanguageHandlerTest extends HandlerTestCase
         //then
         /** @var InMemoryLanguageProjector $projector */
         $projector = $this->container->get(Projection\LanguageProjection::class);
-        $entity = $projector->get($command->getLocale());
+        $entity = $projector->get($command->getCode());
 
-        $this->assertEquals($entity->identifier(), $command->getLocale());
+        $this->assertEquals($entity->identifier(), $command->getCode());
         $this->assertEquals($entity->names(), $command->getNames());
 
-        $aggregateId = VO\Intl\Language\Locale::fromLocale($command->getLocale());
+        $aggregateId = VO\Intl\Language\Code::fromCode($command->getCode());
         $collection = $this->getStreamRepository()->load($aggregateId, 1);
 
         foreach ($collection->getArrayCopy() as $eventStream) {

@@ -7,10 +7,10 @@ use N3ttech\Valuing as VO;
 
 class Language implements Viewable
 {
-    /** @var VO\Intl\Language\Locale */
+    /** @var VO\Intl\Language\Code */
     private $locale;
 
-    /** @var VO\Intl\Language\Locales */
+    /** @var VO\Intl\Language\Texts */
     private $names;
 
     /**
@@ -24,7 +24,7 @@ class Language implements Viewable
     {
         $site = new static();
 
-        return $site->setLocale(VO\Intl\Language\Locale::fromLocale($locale));
+        return $site->setLocale(VO\Intl\Language\Code::fromCode($locale));
     }
 
     /**
@@ -36,19 +36,19 @@ class Language implements Viewable
     }
 
     /**
-     * @return VO\Intl\Language\Locale
+     * @return VO\Intl\Language\Code
      */
-    public function getLocale(): VO\Intl\Language\Locale
+    public function getLocale(): VO\Intl\Language\Code
     {
         return $this->locale;
     }
 
     /**
-     * @param VO\Intl\Language\Locale $locale
+     * @param VO\Intl\Language\Code $locale
      *
      * @return Language
      */
-    public function setLocale(VO\Intl\Language\Locale $locale): Language
+    public function setLocale(VO\Intl\Language\Code $locale): Language
     {
         $this->locale = $locale;
 
@@ -56,9 +56,9 @@ class Language implements Viewable
     }
 
     /**
-     * @return VO\Intl\Language\Locales
+     * @return VO\Intl\Language\Texts
      */
-    public function getNames(): VO\Intl\Language\Locales
+    public function getNames(): VO\Intl\Language\Texts
     {
         return $this->names;
     }
@@ -84,11 +84,11 @@ class Language implements Viewable
     }
 
     /**
-     * @param VO\Intl\Language\Locales $names
+     * @param VO\Intl\Language\Texts $names
      *
      * @return Language
      */
-    public function setNames(VO\Intl\Language\Locales $names): Language
+    public function setNames(VO\Intl\Language\Texts $names): Language
     {
         $this->names = $names;
 
@@ -106,7 +106,7 @@ class Language implements Viewable
     public function addName(string $locale, string $name): Language
     {
         if (null === $this->names) {
-            $this->setNames(VO\Intl\Language\Locales::fromArray([]));
+            $this->setNames(VO\Intl\Language\Texts::fromArray([]));
         }
 
         $this->names->addLocale($locale, $name);

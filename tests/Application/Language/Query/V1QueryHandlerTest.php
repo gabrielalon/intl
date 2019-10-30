@@ -24,7 +24,7 @@ class V1QueryHandlerTest extends HandlerTestCase
     public function setUp(): void
     {
         $this->language = Query\ReadModel\Language::fromLocale('eu')
-            ->setNames(VO\Intl\Language\Locales::fromArray(['pl' => 'Europa', 'en' => 'Europe']))
+            ->setNames(VO\Intl\Language\Texts::fromArray(['pl' => 'Europa', 'en' => 'Europe']))
         ;
 
         $collection = new Query\ReadModel\LanguageCollection();

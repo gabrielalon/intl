@@ -13,7 +13,7 @@ class VatRate implements Viewable
     /** @var VO\Number\Decimal */
     private $rate;
 
-    /** @var VO\Intl\Language\Locales */
+    /** @var VO\Intl\Language\Texts */
     private $names;
 
     /**
@@ -95,19 +95,19 @@ class VatRate implements Viewable
     }
 
     /**
-     * @return VO\Intl\Language\Locales
+     * @return VO\Intl\Language\Texts
      */
-    public function getNames(): VO\Intl\Language\Locales
+    public function getNames(): VO\Intl\Language\Texts
     {
         return $this->names;
     }
 
     /**
-     * @param VO\Intl\Language\Locales $names
+     * @param VO\Intl\Language\Texts $names
      *
      * @return VatRate
      */
-    public function setNames(VO\Intl\Language\Locales $names): VatRate
+    public function setNames(VO\Intl\Language\Texts $names): VatRate
     {
         $this->names = $names;
 
@@ -125,7 +125,7 @@ class VatRate implements Viewable
     public function addName(string $locale, string $name): VatRate
     {
         if (null === $this->names) {
-            $this->setNames(VO\Intl\Language\Locales::fromArray([]));
+            $this->setNames(VO\Intl\Language\Texts::fromArray([]));
         }
 
         $this->names->addLocale($locale, $name);

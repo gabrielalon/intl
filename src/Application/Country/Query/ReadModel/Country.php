@@ -22,7 +22,7 @@ class Country implements Viewable
     /** @var VO\Intl\Country\Regions */
     private $regions;
 
-    /** @var VO\Intl\Language\Locales */
+    /** @var VO\Intl\Language\Texts */
     private $names;
 
     /** @var VO\Char\Text */
@@ -200,19 +200,19 @@ class Country implements Viewable
     }
 
     /**
-     * @return VO\Intl\Language\Locales
+     * @return VO\Intl\Language\Texts
      */
-    public function getNames(): VO\Intl\Language\Locales
+    public function getNames(): VO\Intl\Language\Texts
     {
         return $this->names;
     }
 
     /**
-     * @param VO\Intl\Language\Locales $names
+     * @param VO\Intl\Language\Texts $names
      *
      * @return Country
      */
-    public function setNames(VO\Intl\Language\Locales $names): Country
+    public function setNames(VO\Intl\Language\Texts $names): Country
     {
         $this->names = $names;
 
@@ -230,7 +230,7 @@ class Country implements Viewable
     public function addName(string $locale, string $name): Country
     {
         if (null === $this->names) {
-            $this->setNames(VO\Intl\Language\Locales::fromArray([]));
+            $this->setNames(VO\Intl\Language\Texts::fromArray([]));
         }
 
         $this->names->addLocale($locale, $name);

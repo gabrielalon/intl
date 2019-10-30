@@ -16,7 +16,7 @@ class RemoveLanguageHandler extends LanguageHandler
     public function run(Message $command): void
     {
         /** @var Language $site */
-        $site = $this->repository->find($command->getLocale());
+        $site = $this->repository->find($command->getCode());
 
         $site->remove();
 

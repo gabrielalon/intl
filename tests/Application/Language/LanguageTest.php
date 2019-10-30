@@ -15,10 +15,10 @@ use N3ttech\Valuing as VO;
  */
 class LanguageTest extends AggregateChangedTestCase
 {
-    /** @var VO\Intl\Language\Locale */
+    /** @var VO\Intl\Language\Code */
     private $locale;
 
-    /** @var VO\Intl\Language\Locales */
+    /** @var VO\Intl\Language\Texts */
     private $names;
 
     /**
@@ -27,8 +27,8 @@ class LanguageTest extends AggregateChangedTestCase
      */
     protected function setUp(): void
     {
-        $this->locale = VO\Intl\Language\Locale::fromLocale('eu');
-        $this->names = VO\Intl\Language\Locales::fromArray(['pl' => 'Polski', 'en' => 'Polish']);
+        $this->locale = VO\Intl\Language\Code::fromCode('eu');
+        $this->names = VO\Intl\Language\Texts::fromArray(['pl' => 'Polski', 'en' => 'Polish']);
     }
 
     /**
@@ -63,7 +63,7 @@ class LanguageTest extends AggregateChangedTestCase
         /** @var Language $language */
         $language = $this->reconstituteReturnPackageFromHistory($this->newLanguageCreated());
 
-        $names = VO\Intl\Language\Locales::fromArray(['pl' => 'Test', 'en' => 'Test']);
+        $names = VO\Intl\Language\Texts::fromArray(['pl' => 'Test', 'en' => 'Test']);
 
         $language->translate($names);
 

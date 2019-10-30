@@ -40,7 +40,7 @@ class TranslateLanguageHandlerTest extends HandlerTestCase
         $command = new Command\CreateLanguage('eu', ['pl' => 'Polski', 'en' => 'Polish']);
         $this->getCommandBus()->dispatch($command);
 
-        $command = new Command\TranslateLanguage($command->getLocale(), ['pl' => 'Test', 'en' => 'Test']);
+        $command = new Command\TranslateLanguage($command->getCode(), ['pl' => 'Test', 'en' => 'Test']);
 
         //when
         $this->getCommandBus()->dispatch($command);
@@ -48,12 +48,12 @@ class TranslateLanguageHandlerTest extends HandlerTestCase
         //then
         /** @var InMemoryLanguageProjector $projector */
         $projector = $this->container->get(Projection\LanguageProjection::class);
-        $entity = $projector->get($command->getLocale());
+        $entity = $projector->get($command->getCode());
 
-        $this->assertEquals($entity->identifier(), $command->getLocale());
+        $this->assertEquals($entity->identifier(), $command->getCode());
         $this->assertEquals($entity->names(), $command->getNames());
 
-        $aggregateId = VO\Intl\Language\Locale::fromLocale($command->getLocale());
+        $aggregateId = VO\Intl\Language\Code::fromCode($command->getCode());
         $collection = $this->getStreamRepository()->load($aggregateId, 2);
 
         foreach ($collection->getArrayCopy() as $eventStream) {

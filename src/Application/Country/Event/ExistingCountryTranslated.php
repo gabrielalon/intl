@@ -11,11 +11,11 @@ class ExistingCountryTranslated extends CountryEvent
     /**
      * @throws \Assert\AssertionFailedException
      *
-     * @return VO\Intl\Language\Locales
+     * @return VO\Intl\Language\Texts
      */
-    public function countryNames(): VO\Intl\Language\Locales
+    public function countryNames(): VO\Intl\Language\Texts
     {
-        return VO\Intl\Language\Locales::fromArray($this->payload['names'] ?? []);
+        return VO\Intl\Language\Texts::fromArray($this->payload['names'] ?? []);
     }
 
     /**

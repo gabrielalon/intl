@@ -19,7 +19,7 @@ class TranslateCurrencyHandler extends CurrencyHandler
         /** @var Currency $currency */
         $currency = $this->repository->find($command->getCode());
 
-        $currency->translate(VO\Intl\Language\Locales::fromArray($command->getNames()));
+        $currency->translate(VO\Intl\Language\Texts::fromArray($command->getNames()));
 
         $this->repository->save($currency);
     }

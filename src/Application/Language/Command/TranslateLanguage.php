@@ -7,27 +7,27 @@ use N3ttech\Messaging\Command\Command\Command;
 class TranslateLanguage extends Command
 {
     /** @var string */
-    private $locale;
+    private $code;
 
     /** @var string[] */
     private $names;
 
     /**
-     * @param string $locale
+     * @param string $code
      * @param array  $names
      */
-    public function __construct(string $locale, array $names = [])
+    public function __construct(string $code, array $names = [])
     {
-        $this->locale = $locale;
+        $this->code = $code;
         $this->names = $names;
     }
 
     /**
      * @return string
      */
-    public function getLocale(): string
+    public function getCode(): string
     {
-        return $this->locale;
+        return $this->code;
     }
 
     /**

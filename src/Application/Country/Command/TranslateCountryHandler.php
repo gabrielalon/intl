@@ -19,7 +19,7 @@ class TranslateCountryHandler extends CountryHandler
         /** @var Country $country */
         $country = $this->repository->find($command->getCode());
 
-        $country->translate(VO\Intl\Language\Locales::fromArray($command->getNames()));
+        $country->translate(VO\Intl\Language\Texts::fromArray($command->getNames()));
 
         $this->repository->save($country);
     }

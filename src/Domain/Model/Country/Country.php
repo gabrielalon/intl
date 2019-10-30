@@ -20,7 +20,7 @@ class Country extends AggregateRoot
     /** @var VO\Intl\Country\Regions */
     private $regions;
 
-    /** @var VO\Intl\Language\Locales */
+    /** @var VO\Intl\Language\Texts */
     private $names;
 
     /** @var VO\Char\Text */
@@ -96,11 +96,11 @@ class Country extends AggregateRoot
     }
 
     /**
-     * @param VO\Intl\Language\Locales $names
+     * @param VO\Intl\Language\Texts $names
      *
      * @return Country
      */
-    public function setNames(VO\Intl\Language\Locales $names): Country
+    public function setNames(VO\Intl\Language\Texts $names): Country
     {
         $this->names = $names;
 
@@ -238,9 +238,9 @@ class Country extends AggregateRoot
     }
 
     /**
-     * @param VO\Intl\Language\Locales $names
+     * @param VO\Intl\Language\Texts $names
      */
-    public function translate(VO\Intl\Language\Locales $names): void
+    public function translate(VO\Intl\Language\Texts $names): void
     {
         $this->recordThat(Event\ExistingCountryTranslated::occur($this->aggregateId(), [
             'names' => $names->raw(),

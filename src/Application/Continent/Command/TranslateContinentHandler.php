@@ -19,7 +19,7 @@ class TranslateContinentHandler extends ContinentHandler
         /** @var Continent $site */
         $site = $this->repository->find($command->getCode());
 
-        $site->translate(VO\Intl\Language\Locales::fromArray($command->getNames()));
+        $site->translate(VO\Intl\Language\Texts::fromArray($command->getNames()));
 
         $this->repository->save($site);
     }

@@ -40,7 +40,7 @@ class RemoveLanguageHandlerTest extends HandlerTestCase
         $command = new Command\CreateLanguage('eu', ['pl' => 'Polski', 'en' => 'Polish']);
         $this->getCommandBus()->dispatch($command);
 
-        $command = new Command\RemoveLanguage($command->getLocale());
+        $command = new Command\RemoveLanguage($command->getCode());
 
         //when
         $this->getCommandBus()->dispatch($command);
@@ -49,9 +49,9 @@ class RemoveLanguageHandlerTest extends HandlerTestCase
         /** @var InMemoryLanguageProjector $projector */
         $projector = $this->container->get(Projection\LanguageProjection::class);
         $this->expectException(\RuntimeException::class);
-        $projector->get($command->getLocale());
+        $projector->get($command->getCode());
 
-        $aggregateId = VO\Intl\Language\Locale::fromLocale($command->getLocale());
+        $aggregateId = VO\Intl\Language\Code::fromCode($command->getCode());
         $collection = $this->getStreamRepository()->load($aggregateId, 2);
 
         foreach ($collection->getArrayCopy() as $eventStream) {
@@ -61,7 +61,7 @@ class RemoveLanguageHandlerTest extends HandlerTestCase
             /** @var Event\ExistingLanguageRemoved $event */
             $event = $event::fromEventStream($eventStream);
 
-            $this->assertEquals($command->getLocale(), $event->languageLocale()->toString());
+            $this->assertEquals($command->getCode(), $event->languageLocale()->toString());
         }
 
         $snapshot = $this->getSnapshotRepository()->get(AggregateType::fromAggregateRootClass(Language::class), $aggregateId);

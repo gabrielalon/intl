@@ -18,7 +18,7 @@ class ContinentTest extends AggregateChangedTestCase
     /** @var VO\Intl\Continent\Code */
     private $code;
 
-    /** @var VO\Intl\Language\Locales */
+    /** @var VO\Intl\Language\Texts */
     private $names;
 
     /**
@@ -28,7 +28,7 @@ class ContinentTest extends AggregateChangedTestCase
     protected function setUp(): void
     {
         $this->code = VO\Intl\Continent\Code::fromCode('eu');
-        $this->names = VO\Intl\Language\Locales::fromArray(['pl' => 'Europa', 'en' => 'Europe']);
+        $this->names = VO\Intl\Language\Texts::fromArray(['pl' => 'Europa', 'en' => 'Europe']);
     }
 
     /**
@@ -63,7 +63,7 @@ class ContinentTest extends AggregateChangedTestCase
         /** @var Continent $continent */
         $continent = $this->reconstituteReturnPackageFromHistory($this->newContinentCreated());
 
-        $names = VO\Intl\Language\Locales::fromArray(['pl' => 'Test', 'en' => 'Test']);
+        $names = VO\Intl\Language\Texts::fromArray(['pl' => 'Test', 'en' => 'Test']);
 
         $continent->translate($names);
 

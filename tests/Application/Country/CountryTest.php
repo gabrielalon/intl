@@ -119,7 +119,7 @@ class CountryTest extends AggregateChangedTestCase
         /** @var Country $country */
         $country = $this->reconstituteReturnPackageFromHistory($this->newCountryCreated());
 
-        $names = VO\Intl\Language\Locales::fromArray(['pl' => 'Xxx']);
+        $names = VO\Intl\Language\Texts::fromArray(['pl' => 'Xxx']);
 
         $country->translate($names);
 
