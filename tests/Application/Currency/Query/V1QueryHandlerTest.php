@@ -34,7 +34,7 @@ class V1QueryHandlerTest extends HandlerTestCase
     /**
      * @test
      */
-    public function isFindsCurrencyBycode()
+    public function isFindsCurrencyByCode()
     {
         $manager = new Service\CurrencyQueryManager($this->getQueryBus());
 

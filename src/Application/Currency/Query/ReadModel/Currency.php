@@ -22,6 +22,12 @@ class Currency implements Viewable
     /** @var VO\Char\Text */
     private $priceFormat;
 
+    /** @var VO\Char\Text */
+    private $priceDecimalSeparator;
+
+    /** @var VO\Char\Text */
+    private $priceThousandSeparator;
+
     /**
      * @param string $code
      *
@@ -189,6 +195,62 @@ class Currency implements Viewable
     public function setPriceFormat(VO\Char\Text $priceFormat): Currency
     {
         $this->priceFormat = $priceFormat;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function priceDecimalSeparator(): string
+    {
+        return $this->priceDecimalSeparator->toString();
+    }
+
+    /**
+     * @return VO\Char\Text
+     */
+    public function getPriceDecimalSeparator(): VO\Char\Text
+    {
+        return $this->priceDecimalSeparator;
+    }
+
+    /**
+     * @param VO\Char\Text $priceDecimalSeparator
+     *
+     * @return Currency
+     */
+    public function setPriceDecimalSeparator(VO\Char\Text $priceDecimalSeparator): Currency
+    {
+        $this->priceDecimalSeparator = $priceDecimalSeparator;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function priceThousandSeparator(): string
+    {
+        return $this->priceThousandSeparator->toString();
+    }
+
+    /**
+     * @return VO\Char\Text
+     */
+    public function getPriceThousandSeparator(): VO\Char\Text
+    {
+        return $this->priceThousandSeparator;
+    }
+
+    /**
+     * @param VO\Char\Text $priceThousandSeparator
+     *
+     * @return Currency
+     */
+    public function setPriceThousandSeparator(VO\Char\Text $priceThousandSeparator): Currency
+    {
+        $this->priceThousandSeparator = $priceThousandSeparator;
 
         return $this;
     }

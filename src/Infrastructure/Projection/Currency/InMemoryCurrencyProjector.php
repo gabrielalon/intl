@@ -35,6 +35,8 @@ class InMemoryCurrencyProjector implements CurrencyProjection
             ReadModel\Currency::fromCode($event->aggregateId())
                 ->setSymbol($event->currencySymbol())
                 ->setPriceFormat($event->currencyPriceFormat())
+                ->setPriceDecimalSeparator($event->currencyPriceDecimalSeparator())
+                ->setPriceThousandSeparator($event->currencyPriceThousandSeparator())
         );
     }
 
@@ -50,6 +52,8 @@ class InMemoryCurrencyProjector implements CurrencyProjection
             ReadModel\Currency::fromCode($event->aggregateId())
                 ->setSymbol($event->currencySymbol())
                 ->setPriceFormat($event->currencyPriceFormat())
+                ->setPriceDecimalSeparator($event->currencyPriceDecimalSeparator())
+                ->setPriceThousandSeparator($event->currencyPriceThousandSeparator())
         );
     }
 

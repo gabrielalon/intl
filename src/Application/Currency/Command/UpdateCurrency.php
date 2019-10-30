@@ -15,16 +15,31 @@ class UpdateCurrency extends Command
     /** @var string */
     private $priceFormat;
 
+    /** @var string */
+    private $priceDecimalSeparator;
+
+    /** @var string */
+    private $priceThousandSeparator;
+
     /**
      * @param string $code
      * @param string $symbol
      * @param string $priceFormat
+     * @param string $priceDecimalSeparator
+     * @param string $priceThousandSeparator
      */
-    public function __construct(string $code, string $symbol, string $priceFormat)
-    {
+    public function __construct(
+        string $code,
+        string $symbol,
+        string $priceFormat = '%p %e',
+        string $priceDecimalSeparator = '.',
+        string $priceThousandSeparator = ''
+    ) {
         $this->code = $code;
         $this->symbol = $symbol;
         $this->priceFormat = $priceFormat;
+        $this->priceDecimalSeparator = $priceDecimalSeparator;
+        $this->priceThousandSeparator = $priceThousandSeparator;
     }
 
     /**
@@ -49,5 +64,21 @@ class UpdateCurrency extends Command
     public function getPriceFormat(): string
     {
         return $this->priceFormat;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPriceDecimalSeparator(): string
+    {
+        return $this->priceDecimalSeparator;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPriceThousandSeparator(): string
+    {
+        return $this->priceThousandSeparator;
     }
 }

@@ -49,6 +49,8 @@ class CreateCurrencyHandlerTest extends HandlerTestCase
         $this->assertEquals($entity->identifier(), $command->getCode());
         $this->assertEquals($entity->symbol(), $command->getSymbol());
         $this->assertEquals($entity->priceFormat(), $command->getPriceFormat());
+        $this->assertEquals($entity->priceDecimalSeparator(), $command->getPriceDecimalSeparator());
+        $this->assertEquals($entity->priceThousandSeparator(), $command->getPriceThousandSeparator());
 
         $aggregateId = VO\Intl\Currency\Code::fromCode($command->getCode());
         $collection = $this->getStreamRepository()->load($aggregateId, 1);
@@ -63,6 +65,8 @@ class CreateCurrencyHandlerTest extends HandlerTestCase
             $this->assertTrue($entity->getCode()->equals($event->currencyCode()));
             $this->assertTrue($entity->getSymbol()->equals($event->currencySymbol()));
             $this->assertTrue($entity->getPriceFormat()->equals($event->currencyPriceFormat()));
+            $this->assertTrue($entity->getPriceDecimalSeparator()->equals($event->currencyPriceDecimalSeparator()));
+            $this->assertTrue($entity->getPriceThousandSeparator()->equals($event->currencyPriceThousandSeparator()));
         }
 
         $snapshot = $this->getSnapshotRepository()->get(AggregateType::fromAggregateRootClass(Currency::class), $aggregateId);

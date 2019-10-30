@@ -19,7 +19,9 @@ class CreateCurrencyHandler extends CurrencyHandler
         $this->repository->save(Currency::createNewCurrency(
             VO\Intl\Currency\Code::fromCode($command->getCode()),
             VO\Char\Text::fromString($command->getSymbol()),
-            VO\Char\Text::fromString($command->getPriceFormat())
+            VO\Char\Text::fromString($command->getPriceFormat()),
+            VO\Char\Text::fromString($command->getPriceDecimalSeparator()),
+            VO\Char\Text::fromString($command->getPriceThousandSeparator())
         ));
     }
 }

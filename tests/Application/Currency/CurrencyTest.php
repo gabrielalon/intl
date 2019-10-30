@@ -24,6 +24,12 @@ class CurrencyTest extends AggregateChangedTestCase
     /** @var VO\Char\Text */
     private $priceFormat;
 
+    /** @var VO\Char\Text */
+    private $priceDecimalSeparator;
+
+    /** @var VO\Char\Text */
+    private $priceThousandSeparator;
+
     /**
      * @throws \Assert\AssertionFailedException
      * @throws \Exception
@@ -33,6 +39,8 @@ class CurrencyTest extends AggregateChangedTestCase
         $this->code = VO\Intl\Currency\Code::fromCode('PLN');
         $this->symbol = VO\Char\Text::fromString('zł');
         $this->priceFormat = VO\Char\Text::fromString('%s %e');
+        $this->priceDecimalSeparator = VO\Char\Text::fromString(',');
+        $this->priceThousandSeparator = VO\Char\Text::fromString('.');
     }
 
     /**
@@ -45,7 +53,9 @@ class CurrencyTest extends AggregateChangedTestCase
         $currency = Currency::createNewCurrency(
             $this->code,
             $this->symbol,
-            $this->priceFormat
+            $this->priceFormat,
+            $this->priceDecimalSeparator,
+            $this->priceThousandSeparator
         );
 
         /** @var AggregateChanged[] $events */
@@ -60,6 +70,8 @@ class CurrencyTest extends AggregateChangedTestCase
         $this->assertTrue($this->code->equals($event->currencyCode()));
         $this->assertTrue($this->symbol->equals($event->currencySymbol()));
         $this->assertTrue($this->priceFormat->equals($event->currencyPriceFormat()));
+        $this->assertTrue($this->priceDecimalSeparator->equals($event->currencyPriceDecimalSeparator()));
+        $this->assertTrue($this->priceThousandSeparator->equals($event->currencyPriceThousandSeparator()));
     }
 
     /**
@@ -75,8 +87,10 @@ class CurrencyTest extends AggregateChangedTestCase
 
         $symbol = VO\Char\Text::fromString('zl');
         $priceFormat = VO\Char\Text::fromString('%e %s');
+        $priceDecimalSeparator = VO\Char\Text::fromString('.');
+        $priceThousandSeparator = VO\Char\Text::fromString(',');
 
-        $currency->update($symbol, $priceFormat);
+        $currency->update($symbol, $priceFormat, $priceDecimalSeparator, $priceThousandSeparator);
 
         /** @var AggregateChanged[] $events */
         $events = $this->popRecordedEvents($currency);
@@ -89,6 +103,8 @@ class CurrencyTest extends AggregateChangedTestCase
         $this->assertSame(Event\ExistingCurrencyUpdated::class, $event->messageName());
         $this->assertTrue($symbol->equals($event->currencySymbol()));
         $this->assertTrue($priceFormat->equals($event->currencyPriceFormat()));
+        $this->assertTrue($priceDecimalSeparator->equals($event->currencyPriceDecimalSeparator()));
+        $this->assertTrue($priceThousandSeparator->equals($event->currencyPriceThousandSeparator()));
     }
 
     /**
@@ -183,8 +199,10 @@ class CurrencyTest extends AggregateChangedTestCase
     private function newCurrencyCreated(): AggregateChanged
     {
         return Event\NewCurrencyCreated::occur($this->code->toString(), [
-            'symbol' => $this->symbol->raw(),
-            'price_format' => $this->priceFormat->raw(),
+            'symbol' => $this->symbol->toString(),
+            'price_format' => $this->priceFormat->toString(),
+            'price_decimal_separator' => $this->priceDecimalSeparator->toString(),
+            'price_thousand_separator' => $this->priceThousandSeparator->toString(),
         ]);
     }
 }

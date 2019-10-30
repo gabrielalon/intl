@@ -1,30 +1,30 @@
 <?php
 
-namespace N3ttech\Intl\Infrastructure\Persist\Currency;
+namespace N3ttech\Intl\Infrastructure\Persist\Country;
 
-use N3ttech\Intl\Domain\Model\Currency\Currency;
+use N3ttech\Intl\Domain\Model\Country\Country;
 use N3ttech\Messaging\Aggregate\AggregateRoot;
 use N3ttech\Messaging\Aggregate\Persist\AggregateRepository;
 use N3ttech\Valuing as VO;
 
-class CurrencyRepository extends AggregateRepository
+class CountryRepository extends AggregateRepository
 {
     /**
      * {@inheritdoc}
      */
     public function getAggregateRootClass(): string
     {
-        return Currency::class;
+        return Country::class;
     }
 
     /**
-     * @param Currency $currency
+     * @param Country $country
      *
      * @throws \Exception
      */
-    public function save(Currency $currency): void
+    public function save(Country $country): void
     {
-        $this->saveAggregateRoot($currency);
+        $this->saveAggregateRoot($country);
     }
 
     /**
@@ -32,10 +32,10 @@ class CurrencyRepository extends AggregateRepository
      *
      * @throws \Assert\AssertionFailedException
      *
-     * @return AggregateRoot|Currency
+     * @return AggregateRoot|Country
      */
     public function find(string $code): AggregateRoot
     {
-        return $this->findAggregateRoot(VO\Intl\Currency\Code::fromCode($code));
+        return $this->findAggregateRoot(VO\Intl\Country\Code::fromCode($code));
     }
 }
