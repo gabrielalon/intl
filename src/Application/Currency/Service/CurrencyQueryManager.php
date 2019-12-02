@@ -22,10 +22,7 @@ class CurrencyQueryManager extends QueryManager
         $this->ask($query);
 
         if (false == $query->getCurrency() instanceof Query\ReadModel\Currency) {
-            throw new Exception\ResourceNotFoundException(\sprintf(
-                'Currency not found by code %s.',
-                $code
-            ));
+            throw new Exception\ResourceNotFoundException(\sprintf('Currency not found by code %s.', $code));
         }
 
         return $query->getCurrency();

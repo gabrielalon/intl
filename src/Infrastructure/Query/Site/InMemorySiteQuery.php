@@ -46,10 +46,7 @@ class InMemorySiteQuery implements Query\V1\SiteQuery
             return;
         }
 
-        throw new \RuntimeException(\sprintf(
-            'Site does not exists on given host: %s',
-            $query->getHost()
-        ));
+        throw new \RuntimeException(\sprintf('Site does not exists on given host: %s', $query->getHost()));
     }
 
     /**
@@ -60,10 +57,7 @@ class InMemorySiteQuery implements Query\V1\SiteQuery
     private function checkExistence(string $uuid): void
     {
         if (false === $this->entities->has($uuid)) {
-            throw new \RuntimeException(\sprintf(
-                'Site does not exists on given identity: %s',
-                $uuid
-            ));
+            throw new \RuntimeException(\sprintf('Site does not exists on given identity: %s', $uuid));
         }
     }
 }

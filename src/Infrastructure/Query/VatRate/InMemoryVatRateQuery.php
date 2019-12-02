@@ -35,10 +35,7 @@ class InMemoryVatRateQuery implements Query\V1\VatRateQuery
     private function checkExistence(string $uuid): void
     {
         if (false === $this->entities->has($uuid)) {
-            throw new \RuntimeException(\sprintf(
-                'VatRate does not exists on given identity: %s',
-                $uuid
-            ));
+            throw new \RuntimeException(\sprintf('VatRate does not exists on given identity: %s', $uuid));
         }
     }
 }

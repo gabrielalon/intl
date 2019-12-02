@@ -51,8 +51,8 @@ class VatRate extends AggregateRoot
     }
 
     /**
-     * @param VO\Identity\Uuid         $uuid
-     * @param VO\Number\Decimal        $rate
+     * @param VO\Identity\Uuid       $uuid
+     * @param VO\Number\Decimal      $rate
      * @param VO\Intl\Language\Texts $names
      *
      * @return VatRate

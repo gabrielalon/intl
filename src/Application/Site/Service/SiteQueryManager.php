@@ -22,10 +22,7 @@ class SiteQueryManager extends QueryManager
         $this->ask($query);
 
         if (false == $query->getSite() instanceof Query\ReadModel\Site) {
-            throw new Exception\ResourceNotFoundException(\sprintf(
-                'Site not found by host %s.',
-                $host
-            ));
+            throw new Exception\ResourceNotFoundException(\sprintf('Site not found by host %s.', $host));
         }
 
         return $query->getSite();
@@ -45,10 +42,7 @@ class SiteQueryManager extends QueryManager
         $this->ask($query);
 
         if (false == $query->getSite() instanceof Query\ReadModel\Site) {
-            throw new Exception\ResourceNotFoundException(\sprintf(
-                'Site not found by identity %s.',
-                $uuid
-            ));
+            throw new Exception\ResourceNotFoundException(\sprintf('Site not found by identity %s.', $uuid));
         }
 
         return $query->getSite();

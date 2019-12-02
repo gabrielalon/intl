@@ -36,7 +36,7 @@ class Continent extends Aggregate\AggregateRoot
     }
 
     /**
-     * @param VO\Intl\Continent\Code   $code
+     * @param VO\Intl\Continent\Code $code
      * @param VO\Intl\Language\Texts $names
      *
      * @return Continent

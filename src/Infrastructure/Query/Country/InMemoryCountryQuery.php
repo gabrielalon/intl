@@ -56,10 +56,7 @@ class InMemoryCountryQuery implements Query\V1\CountryQuery
     private function checkExistence(string $uuid): void
     {
         if (false === $this->entities->has($uuid)) {
-            throw new \RuntimeException(\sprintf(
-                'Country does not exists on given code: %s',
-                $uuid
-            ));
+            throw new \RuntimeException(\sprintf('Country does not exists on given code: %s', $uuid));
         }
     }
 }

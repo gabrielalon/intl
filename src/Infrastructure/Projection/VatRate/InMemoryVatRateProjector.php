@@ -12,7 +12,7 @@ class InMemoryVatRateProjector implements VatRateProjection
     private $entities;
 
     /**
-     * @param null|ReadModel\VatRateCollection $entities
+     * @param ReadModel\VatRateCollection|null $entities
      */
     public function __construct(ReadModel\VatRateCollection $entities = null)
     {
@@ -106,10 +106,7 @@ class InMemoryVatRateProjector implements VatRateProjection
     private function checkExistence(string $uuid): void
     {
         if (false === $this->entities->has($uuid)) {
-            throw new \RuntimeException(\sprintf(
-                'VatRate does not exists on given identity: %s',
-                $uuid
-            ));
+            throw new \RuntimeException(\sprintf('VatRate does not exists on given identity: %s', $uuid));
         }
     }
 }

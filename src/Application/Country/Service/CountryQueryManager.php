@@ -22,10 +22,7 @@ class CountryQueryManager extends QueryManager
         $this->ask($query);
 
         if (false == $query->getCountry() instanceof Query\ReadModel\Country) {
-            throw new Exception\ResourceNotFoundException(\sprintf(
-                'Country not found by code %s.',
-                $code
-            ));
+            throw new Exception\ResourceNotFoundException(\sprintf('Country not found by code %s.', $code));
         }
 
         return $query->getCountry();

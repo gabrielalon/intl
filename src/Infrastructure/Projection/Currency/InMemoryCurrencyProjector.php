@@ -12,7 +12,7 @@ class InMemoryCurrencyProjector implements CurrencyProjection
     private $entities;
 
     /**
-     * @param null|ReadModel\CurrencyCollection $entities
+     * @param ReadModel\CurrencyCollection|null $entities
      */
     public function __construct(ReadModel\CurrencyCollection $entities = null)
     {
@@ -125,10 +125,7 @@ class InMemoryCurrencyProjector implements CurrencyProjection
     private function checkExistence(string $code): void
     {
         if (false === $this->entities->has($code)) {
-            throw new \RuntimeException(\sprintf(
-                'Currency does not exists on given identity: %s',
-                $code
-            ));
+            throw new \RuntimeException(\sprintf('Currency does not exists on given identity: %s', $code));
         }
     }
 }

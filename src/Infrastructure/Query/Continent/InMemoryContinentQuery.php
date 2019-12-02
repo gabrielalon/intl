@@ -35,10 +35,7 @@ class InMemoryContinentQuery implements Query\V1\ContinentQuery
     private function checkExistence(string $code): void
     {
         if (false === $this->entities->has($code)) {
-            throw new \RuntimeException(\sprintf(
-                'Continent does not exists on given code: %s',
-                $code
-            ));
+            throw new \RuntimeException(\sprintf('Continent does not exists on given code: %s', $code));
         }
     }
 }

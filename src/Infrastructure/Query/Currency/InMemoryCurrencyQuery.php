@@ -35,10 +35,7 @@ class InMemoryCurrencyQuery implements Query\V1\CurrencyQuery
     private function checkExistence(string $uuid): void
     {
         if (false === $this->entities->has($uuid)) {
-            throw new \RuntimeException(\sprintf(
-                'Currency does not exists on given code: %s',
-                $uuid
-            ));
+            throw new \RuntimeException(\sprintf('Currency does not exists on given code: %s', $uuid));
         }
     }
 }

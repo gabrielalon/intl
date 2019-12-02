@@ -31,6 +31,7 @@ class LanguageRepository extends AggregateRepository
      * @param string $code
      *
      * @return AggregateRoot|Language
+     *
      * @throws \Assert\AssertionFailedException
      */
     public function find(string $code): AggregateRoot

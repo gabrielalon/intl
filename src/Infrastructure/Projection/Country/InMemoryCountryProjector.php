@@ -12,7 +12,7 @@ class InMemoryCountryProjector implements CountryProjection
     private $entities;
 
     /**
-     * @param null|ReadModel\CountryCollection $entities
+     * @param ReadModel\CountryCollection|null $entities
      */
     public function __construct(ReadModel\CountryCollection $entities = null)
     {
@@ -178,10 +178,7 @@ class InMemoryCountryProjector implements CountryProjection
     private function checkExistence(string $code): void
     {
         if (false === $this->entities->has($code)) {
-            throw new \RuntimeException(\sprintf(
-                'Country does not exists on given code: %s',
-                $code
-            ));
+            throw new \RuntimeException(\sprintf('Country does not exists on given code: %s', $code));
         }
     }
 }

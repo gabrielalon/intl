@@ -4,8 +4,3 @@ composer.lock
 .idea
 .DS_Store
 ###> n3ttech/intl ###;
-
-###> n3ttech/checking ###
-.php_cs.cache
-.phpunit.result.cache
-###> n3ttech/checking ###

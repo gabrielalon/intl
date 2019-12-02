@@ -12,7 +12,7 @@ class InMemoryContinentProjector implements Projection\ContinentProjection
     private $entities;
 
     /**
-     * @param null|ReadModel\ContinentCollection $entities
+     * @param ReadModel\ContinentCollection|null $entities
      */
     public function __construct(ReadModel\ContinentCollection $entities = null)
     {
@@ -86,10 +86,7 @@ class InMemoryContinentProjector implements Projection\ContinentProjection
     private function checkExistence(string $code): void
     {
         if (false === $this->entities->has($code)) {
-            throw new \RuntimeException(\sprintf(
-                'Continent does not exists on given code: %s',
-                $code
-            ));
+            throw new \RuntimeException(\sprintf('Continent does not exists on given code: %s', $code));
         }
     }
 }

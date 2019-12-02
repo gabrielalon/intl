@@ -20,10 +20,7 @@ class LanguageQueryManager extends QueryManager
         $this->ask($query);
 
         if (false == $query->getLanguage() instanceof Query\ReadModel\Language) {
-            throw new Exception\ResourceNotFoundException(\sprintf(
-                'Language not found by locale %s.',
-                $locale
-            ));
+            throw new Exception\ResourceNotFoundException(\sprintf('Language not found by locale %s.', $locale));
         }
 
         return $query->getLanguage();

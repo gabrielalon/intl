@@ -35,10 +35,7 @@ class InMemoryLanguageQuery implements Query\V1\LanguageQuery
     private function checkExistence(string $locale): void
     {
         if (false === $this->entities->has($locale)) {
-            throw new \RuntimeException(\sprintf(
-                'Language does not exists on given locale: %s',
-                $locale
-            ));
+            throw new \RuntimeException(\sprintf('Language does not exists on given locale: %s', $locale));
         }
     }
 }

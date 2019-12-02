@@ -12,7 +12,7 @@ class InMemorySiteProjector implements SiteProjection
     private $entities;
 
     /**
-     * @param null|ReadModel\SiteCollection $entities
+     * @param ReadModel\SiteCollection|null $entities
      */
     public function __construct(ReadModel\SiteCollection $entities = null)
     {
@@ -108,10 +108,7 @@ class InMemorySiteProjector implements SiteProjection
     private function checkExistence(string $uuid): void
     {
         if (false === $this->entities->has($uuid)) {
-            throw new \RuntimeException(\sprintf(
-                'Site does not exists on given identity: %s',
-                $uuid
-            ));
+            throw new \RuntimeException(\sprintf('Site does not exists on given identity: %s', $uuid));
         }
     }
 }

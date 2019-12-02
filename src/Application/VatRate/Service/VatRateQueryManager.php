@@ -22,10 +22,7 @@ class VatRateQueryManager extends QueryManager
         $this->ask($query);
 
         if (false == $query->getVatRate() instanceof Query\ReadModel\VatRate) {
-            throw new Exception\ResourceNotFoundException(\sprintf(
-                'VatRate not found by identity %s.',
-                $uuid
-            ));
+            throw new Exception\ResourceNotFoundException(\sprintf('VatRate not found by identity %s.', $uuid));
         }
 
         return $query->getVatRate();

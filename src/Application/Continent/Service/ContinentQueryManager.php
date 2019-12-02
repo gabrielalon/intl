@@ -20,10 +20,7 @@ class ContinentQueryManager extends QueryManager
         $this->ask($query);
 
         if (false == $query->getContinent() instanceof Query\ReadModel\Continent) {
-            throw new Exception\ResourceNotFoundException(\sprintf(
-                'Continent not found by code %s.',
-                $code
-            ));
+            throw new Exception\ResourceNotFoundException(\sprintf('Continent not found by code %s.', $code));
         }
 
         return $query->getContinent();

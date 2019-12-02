@@ -12,7 +12,7 @@ class InMemoryLanguageProjector implements Projection\LanguageProjection
     private $entities;
 
     /**
-     * @param null|ReadModel\LanguageCollection $entities
+     * @param ReadModel\LanguageCollection|null $entities
      */
     public function __construct(ReadModel\LanguageCollection $entities = null)
     {
@@ -86,10 +86,7 @@ class InMemoryLanguageProjector implements Projection\LanguageProjection
     private function checkExistence(string $locale): void
     {
         if (false === $this->entities->has($locale)) {
-            throw new \RuntimeException(\sprintf(
-                'Language does not exists on given locale: %s',
-                $locale
-            ));
+            throw new \RuntimeException(\sprintf('Language does not exists on given locale: %s', $locale));
         }
     }
 }
